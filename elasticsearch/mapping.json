@@ -1,0 +1,42 @@
+{
+  "doc": {
+    "dynamic": "strict",
+    "properties": {
+      "artist_en": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      },
+      "artist_sin": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      },
+      "genre_en": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      },
+      "genre_si": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      },
+      "composer_en": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      },
+      "composer_si": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      },
+      "music_en": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      },
+      "views": {
+        "type": "integer"
+      },
+      "lyrics": {
+        "type": "text",
+        "analyzer": "my_analyzer"
+      }
+    }
+  }
+}
