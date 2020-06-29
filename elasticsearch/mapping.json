@@ -2,40 +2,53 @@
   "doc": {
     "dynamic": "strict",
     "properties": {
+      "name": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
+      },
       "artist_en": {
         "type": "text",
-        "analyzer": "my_analyzer"
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
       },
-      "artist_sin": {
+      "artist_si": {
         "type": "text",
-        "analyzer": "my_analyzer"
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
       },
       "genre_en": {
         "type": "text",
-        "analyzer": "my_analyzer"
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
       },
       "genre_si": {
         "type": "text",
-        "analyzer": "my_analyzer"
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
       },
       "composer_en": {
         "type": "text",
-        "analyzer": "my_analyzer"
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
       },
       "composer_si": {
         "type": "text",
-        "analyzer": "my_analyzer"
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
       },
       "music_en": {
         "type": "text",
-        "analyzer": "my_analyzer"
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
       },
       "views": {
         "type": "integer"
       },
       "lyrics": {
         "type": "text",
-        "analyzer": "my_analyzer"
+        "analyzer": "my_analyzer",
+        "search_analyser":"search_analyzer"
       }
     }
   }

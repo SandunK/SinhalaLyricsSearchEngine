@@ -1,5 +1,21 @@
 {
   "analysis": {
+    "char_filter": {
+      "character_filter": {
+        "type": "mapping",
+        "mappings": [
+          "\u200d=>",
+          "\u200B=>",
+          ",=> ",
+          ".=> ",
+          "/=> ",
+          "|=> ",
+          "-=> ",
+          "'=> ",
+          "_=> "
+        ]
+      }
+    },
     "filter": {
       "my_filter": {
         "type": "edge_ngram",
@@ -7,11 +23,33 @@
         "max_gram": 15
       }
     },
+    "stopword": {
+      "type": "stop",
+      "stopwords": [
+        "සහ",
+        "හා",
+        "වැනි",
+        "සේ",
+        "‌මෙන්",
+        "සමග",
+        "ගීත"
+      ]
+    },
     "analyzer": {
       "my_analyzer": {
         "type": "custom",
-        "tokenizer": "whitespace",
-        "filter": "my_filter"
+        "tokenizer": "icu_tokenizer",
+        "char_filter": "character_filter",
+        "filter": [
+          "my_filter",
+          "stopword"
+        ]
+      },
+      "search_analyzer": {
+        "type": "custom",
+        "tokenizer": "icu_tokenizer",
+        "char_filter": "character_filter",
+        "filter": "stopword"
       }
     }
   }

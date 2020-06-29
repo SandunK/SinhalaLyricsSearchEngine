@@ -21,6 +21,8 @@ class LyricsSpider(scrapy.Spider):
     def parseSong(self, response):
         translator = Translator()
 
+        name = (response.xpath('//div[@class="entry-content"]//span[@class="sinTitle"]/text()').get())
+
         artist = (response.xpath('//div[@class="su-row"]//span[@class="entry-categories"]//a/text()')).extract()
         binder = ','
         artist_en = binder.join(artist)
@@ -47,7 +49,8 @@ class LyricsSpider(scrapy.Spider):
         lyrics_entry = (response.xpath('//div[@class="entry-content"]//pre/text()')).extract()
         lyrics = self.processLyrics(lyrics_entry)
 
-        data = {"artist_en": artist_en,
+        data = {"name": name,
+                "artist_en": artist_en,
                 "artist_si": artist_si,
                 "genre_en": genre_en,
                 "genre_si": genre_si,

@@ -13,7 +13,7 @@ def connect_elasticsearch():
 
 
 def create_index(es_object, index_name):
-    with open("settings.json") as settings:
+    with open("settings.json", encoding="utf8") as settings:
         settings_data = json.load(settings)
 
     with open("mapping.json", encoding="utf8") as mapping:
