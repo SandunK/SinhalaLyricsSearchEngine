@@ -10,6 +10,8 @@ This project is to create a search engine that is capable of searching Sinhala s
   - "googletranslate" python library
   - Flask for web api
   - "[Sinling](https://github.com/ysenarath/sinling.git)" project for sinhala tokenizer 
+  
+  > Sinling project should be added into the project root directory
 
 ## Content
 
