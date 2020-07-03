@@ -78,5 +78,5 @@ class LyricsSpider(scrapy.Spider):
         return lyricsTxt.strip()
 
     def close(self, reason):
-        with open("lyricsObj.json", 'w', encoding="utf8") as outfile:
+        with open("../lyrics_data/lyricsObj.json", 'w', encoding="utf8") as outfile:
             json.dump(self.jsonLst, outfile, indent=4, ensure_ascii=False)

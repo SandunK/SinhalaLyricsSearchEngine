@@ -38,7 +38,7 @@
     "analyzer": {
       "my_analyzer": {
         "type": "custom",
-        "tokenizer": "icu_tokenizer",
+        "tokenizer": "whitespace",
         "char_filter": "character_filter",
         "filter": [
           "my_filter",
@@ -47,7 +47,7 @@
       },
       "search_analyzer": {
         "type": "custom",
-        "tokenizer": "icu_tokenizer",
+        "tokenizer": "whitespace",
         "char_filter": "character_filter",
         "filter": "stopword"
       }

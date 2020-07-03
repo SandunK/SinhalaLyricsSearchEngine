@@ -9,8 +9,8 @@ app = Flask(__name__)
 tokenizer = SinhalaTokenizer()
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
-music_by_list = [ 'සංගීතමය', 'සංගීතවත්','අධ්‍යක්ෂණය', 'සංගීත','තනු']
-lyrics_by_list = ['ලියා', 'ලියූ', 'ලිව්ව', 'ලිව්', 'රචනා',  'ලියා ඇති', 'රචිත', 'ලියන ලද','ලියන', 'හදපු', 'පද', 'රචනය', 'හැදූ', 'හැදුව', 'ලියන', 'ලියන්න','ලීව', 'ලියපු', 'ලියා ඇත', 'ලිඛිත']
+music_list = ['සංගීතමය', 'සංගීතවත්', 'අධ්‍යක්ෂණය', 'සංගීත', 'තනු']
+lyrics_list = ['ලියා', 'ලියූ', 'ලිව්ව', 'ලිව්', 'රචනා', 'ලියා ඇති', 'රචිත', 'ලියන ලද', 'ලියන', 'හදපු', 'පද', 'රචනය', 'හැදූ', 'හැදුව', 'ලියන', 'ලියන්න', 'ලීව', 'ලියපු', 'ලියා ඇත', 'ලිඛිත']
 genre_list = ['පැරණි', 'පොප්ස්','පොප්','පරණ','ක්ලැසික්','ක්ලැසි','ඉල්ලීම','චිත්‍රපට','නව', 'වර්ගයේ', 'අයත්', 'වර්ගයට' ]
 artist_list = ['ගේ', 'කීව', 'කී', 'ගායනා කරන', 'ගයන', 'ගායනා','‌ගේ', 'හඩින්', 'කියනා', 'කිව්ව', 'කිව්', 'කිව', 'ගායනය', 'ගායනා කළා', 'ගායනා කල', 'ගැයූ']
 super_list = ['සුපිරි', 'නියම', 'පට්ට','ඉහළම', 'හොඳ', 'හොඳම', 'එලකිරි', 'එළකිරි', 'සුප්පර්', 'සුප්රකට', 'ඉහල',  'වැඩිපුර', 'වැඩිපුරම', 'සුප්‍රකට', 'ජනප්රිය', 'ජනප්රියම', 'ජනප්‍රිය', 'ජනප්‍රියම', 'ප්‍රකට', 'ප්‍රසිද්ධ']
@@ -24,7 +24,7 @@ def main():
 
 @app.route('/search', methods=['POST'])
 def search():
-    boosting_list = ["lyrics"]
+    boost_feature_list = ["lyrics"]
     query_request = request.form["query"].strip()
     token_list = tokenizer.tokenize(query_request)
     popular = False
@@ -32,19 +32,19 @@ def search():
     for token in token_list:
 
         if (token in genre_list):
-            boosting_list.append("genre_si^2")
+            boost_feature_list.append("genre_si^2")
         else:
-            boosting_list.append("genre_si")
-        if (token in lyrics_by_list):
-            boosting_list.append("composer_si^2")
+            boost_feature_list.append("genre_si")
+        if (token in lyrics_list):
+            boost_feature_list.append("composer_si^2")
             token_list.remove(token)
         else:
-            boosting_list.append("composer_si")
-        if (token in music_by_list):
-            boosting_list.append("music_si^2")
+            boost_feature_list.append("composer_si")
+        if (token in music_list):
+            boost_feature_list.append("music_si^2")
             token_list.remove(token)
         else:
-            boosting_list.append("music_si")
+            boost_feature_list.append("music_si")
 
         if (token in super_list):
             popular = True
@@ -54,28 +54,24 @@ def search():
             token_list.remove(token)
 
         if (token in artist_list):
-            boosting_list.append("artist_si^2")
+            boost_feature_list.append("artist_si^2")
             token_list.remove(token)
         else:
-            boosting_list.append("artist_si")
+            boost_feature_list.append("artist_si")
 
 
 
 
-    processed_query_request = " ".join(token_list)
+    processed_query = " ".join(token_list)
 
-    boosting_list = list(dict.fromkeys(boosting_list))
-    print(query_request)
-    print(token_list)
-    print(processed_query_request)
-    print(boosting_list)
+    boost_feature_list = list(dict.fromkeys(boost_feature_list))
 
     if (popular):
         print(popular)
-        boosted_query = es.search(index="sinhalalyrics", body=
+        results = es.search(index="sinhalalyrics", body=
         {"query": {
             "query_string": {
-                "query": processed_query_request,
+                "query": processed_query,
                 "fields": ["artist_si", "composer_si", "genre_si", "music_si","views^5"],
                 "default_operator": "OR"
             }
@@ -86,20 +82,18 @@ def search():
             ]
         })
     else:
-        boosted_query = es.search(index="sinhalalyrics", body=
+        results = es.search(index="sinhalalyrics", body=
         {"query": {
             "query_string": {
-                "query": processed_query_request,
-                "fields": boosting_list,
+                "query": processed_query,
+                "fields": boost_feature_list,
                 "default_operator": "OR"
             }
         }
         }
 
                                   )
-
-    # boosted_query=es.search(index='sinhalalyrics', size= 1000, body={'query': {'match': {'genre_si': 'පොප්'}}})
-    hits = boosted_query["hits"]["hits"]
+    hits = results["hits"]["hits"]
     if (len(hits) == 0):
         return render_template('index.html', result="No search result exists")
     lyrcs_list = [lyrics["_source"] for lyrics in hits]
