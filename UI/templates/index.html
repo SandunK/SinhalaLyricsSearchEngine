@@ -5,41 +5,41 @@
     <title>සිංහල සින්දු ඒකතුව</title>
 </head>
 <body>
-    <form action="{{ url_for('search') }}" method = "POST">
-         <p>සෙවීම සිදුකිරීමට වචන ඇතුලත් කරන්න: </p>
-         <p><input type = "text" name = "query" /></p>
-         <p><input type = "submit" value = "submit" /></p>
-      </form>
-      <div class="text" >
-         <div style="white-space: pre-line"  charset="UTF-8">
-             <table>
-                 <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Artist</th>
-                        <th>Genre</th>
-                        <th>Lyrics by</th>
-                        <th>Music by</th>
-                        <th>Views</th>
-                        <th>Lyrics</th>
-                    </tr>
-                 </thead>
-                 <tbody>
-                    {% for result in results %}
-                        <tr>
-                            <td>{{result["name"]}}</td>
-                            <td>{{result["artist_si"]}}</td>
-                            <td>{{result["genre_si"]}}</td>
-                            <td>{{result["composer_si"]}}</td>
-                            <td>{{result["music_si"]}}</td>
-                            <td>{{result["views"]}}</td>
-                            <td>{{result["lyrics"]}}</td>
-                        </tr>
-                    {% endfor %}
-                 </tbody>
-             </table>
+<form action="{{ url_for('search') }}" method="POST">
+    <p>සෙවීම සිදුකිරීමට වචන ඇතුලත් කරන්න: </p>
+    <p><input type="text" name="query"/></p>
+    <p><input type="submit" value="submit"/></p>
+</form>
+<div class="text">
+    <div style="white-space: pre-line" charset="UTF-8">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Lyrics by</th>
+                <th>Music by</th>
+                <th>Views</th>
+                <th>Lyrics</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+            <tr>
+                <td>{{result["name"]}}</td>
+                <td>{{result["artist_si"]}}</td>
+                <td>{{result["genre_si"]}}</td>
+                <td>{{result["composer_si"]}}</td>
+                <td>{{result["music_si"]}}</td>
+                <td>{{result["views"]}}</td>
+                <td>{{result["lyrics"]}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-         </div>
-      </div>
+    </div>
+</div>
 </body>
 </html>

@@ -63,7 +63,7 @@ class LyricsSpider(scrapy.Spider):
 
         self.jsonLst.append(data)
         print(self.count)
-        self.count+=1
+        self.count += 1
         yield data
 
     def processLyrics(self, lyrics):
