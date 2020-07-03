@@ -78,6 +78,8 @@ Json structure as follows,
 >   ...
 >]
 
+> Note: Data were scraped from https://sinhalasongbook.com/ site for educational purposes
+
 ## Indexing and Mapping
 Several advance methods are used to create index and map above scrapped data into elasticsearch. Required resources are available [here](https://www.elastic.co/downloads/elasticsearch) .
 
