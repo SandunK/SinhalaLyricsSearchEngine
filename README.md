@@ -84,11 +84,9 @@ Several advance methods are used to create index and map above scrapped data int
 ## Guidline for possible queries
 This project can handle several basic queries and some advance queries. For example, this system has the capability to handle basic queries like "අමරදේව,"වක්කඩ ලග , etc. and some advace queries like "අමරදේව ගැයූ ගී","අමරදේව ගැයූ හොදම ගීත", etc.
 
-![Screenshot 1](/images/logo.png)
-Format: ![Alt Text](url)
+![Screenshot 1](/images/sc1.jpeg)
 
-![Screenshot 2](/images/logo.png)
-Format: ![Alt Text](url)
+![Screenshot 2](/images/sc2.jpeg)
 
 However, The system can not handle the queries contains combined words like "අමරදේවගේ" yet.
 
