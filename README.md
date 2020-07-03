@@ -81,6 +81,11 @@ Json structure as follows,
 
 > Note: Data were scraped from https://sinhalasongbook.com/ site for educational purposes
 
+Proceed to the directory `` ${project root}/sinLyrics`` and execute        
+``` scrapy crawl {crawler name}```
+
+> In this project crawler name will be replaced by `` lyricsSpyder ``
+
 ## Indexing and Mapping
 Several advance methods are used to create index and map above scrapped data into elasticsearch. Required resources are available [here](https://www.elastic.co/downloads/elasticsearch) .
 
