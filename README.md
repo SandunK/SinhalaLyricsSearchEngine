@@ -27,11 +27,11 @@ This project is to create a search engine that is capable of searching Sinhala s
 This project have used python 3.6.5. You can easily configure the python envirenment according to the platform that youa are using.
 
 Next, install "scrapy", "flask" and "googletrans" libraries for python using python "pip".
-- scrapy
+- scrapy        
 ``` pip install scrapy ```
-- flask
+- flask        
 ``` pip install flask ```
-- Google translate
+- Google translate        
 ``` pip install googletrans```
 
 ### Elasticsearch
@@ -39,18 +39,19 @@ Next, install "scrapy", "flask" and "googletrans" libraries for python using pyt
 You can find elasticsearch project from official website [here](https://www.elastic.co/downloads/elasticsearch).
 
 Then you can run elastic server,
-- Windows
+- Windows        
 ``` ${path to the elasticsearch library}/bin/elasticsearch.bat```
-- Linux
+- Linux        
 -``` ${path to the elasticsearch library}/bin/elasticsearch```
 
 > Note:  Default port number of the elasticsearch server is 9200. You can change it as you wish using elasticsearch configurations.
 
 ### Flask
-First navigate into the directory ``${project root}/UI``. Then you can start the web UI using flask as
+First navigate into the directory ``${project root}/UI``. Then you can start the web UI using flask as        
 ``` python -m flask run ```
 
 Then the running api can be access by `` http:// localhost:5000 ``
+
 > Note:  Default port number of the flask root endpoint is 5000. You can change it as you wish using flask configurations.
 
 ## Web Scraping
